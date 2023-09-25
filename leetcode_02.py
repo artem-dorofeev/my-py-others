@@ -1,19 +1,51 @@
 class Solution:
     def romanToInt(self, s: str) -> int:
-        pass
+        # result = 0
+        # for i in s:
+        #     for key, val in VOCAB.items():
+        #         if i == key:
+        #             print(val)
+        #             result += val
+        # return result
+        
+
+        result = 0
+        n = 0
+        while n < len(s):
+            duo = s[n] + s[n+1] if n + 1 < len(s) else s[n]
+            if duo in VOCAB:
+                result += VOCAB[duo]
+                n += 1
+
+            else:
+                one = s[n]
+                result += VOCAB[one]
+            n += 1
+
+        # for i in s:
+        #     if i in VOCAB:
+        #         print(VOCAB[i])
+            # for key, val in VOCAB.items():
+            #     if i == key:
+            #         print(val)
+            #         result += val
+        return result
 
 
 VOCAB = {"I": 1,
-         "V": 5,
-         "X": 10,
-         "L": 50,
-         "C": 100,
-         "D": 500,
-         "M": 1000}
+         "IV": 4, "V": 5,
+         "IX": 9, "X": 10,
+         "XL": 40, "L": 50,
+         "XC": 90, "C": 100,
+         "CD": 400, "D": 500,
+         "CM": 900, "M": 1000}
 
 
 if __name__ == "__main__":
-    print(main())
+    test_str = 'MCMXCIV'
+    s = Solution()
+    print(s.romanToInt(test_str))
+    # s.romanToInt(test_str)
 
 """
 13. Roman to Integer
